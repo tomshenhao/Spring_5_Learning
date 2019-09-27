@@ -12,9 +12,6 @@
     	<property name="printedLoggerLevel" value="FINE"/>
     </bean>
 	
-	<!--  load the properties file: sport.properties -->
-	<context:property-placeholder  location="classpath:sport.properties"/>
-
 	<!-- Define your beans here -->
 	
 	<!-- Define the dependency -->
@@ -23,22 +20,13 @@
  	</bean>
  	
  	<bean id="myCoach"
- 		class="com.luv2code.springdemo.TrackCoach">	 
+ 		class="com.luv2code.springdemo.TrackCoach"
+ 		init-method="doMyStartupStuff"
+ 		destroy-method="doMyCleanupStuff">	 
  		
  		<constructor-arg ref="myFortuneservice"/>		
  	</bean>
- 	
- 	<bean id="myCricketCoach"
- 		class="com.luv2code.springdemo.CricketCoach">
- 		
- 		<property name="fortuneService" ref="myFortuneservice" />
- 		
- 		<property name="emailAddress" value="${foo.email}" />
- 		
- 		<property name="team" value="${foo.team}" />
- 		
- 	</bean>
- 	
+
 </beans>
 
 
